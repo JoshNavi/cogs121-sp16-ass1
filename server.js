@@ -83,7 +83,7 @@ passport.use(new strategy.Twitter({
 
 
 
-});
+}));
 /* TODO: Passport serialization here */
 passport.serializeUser(function(user, done) {
     done(null, user);

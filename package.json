@@ -4,23 +4,23 @@
   "description": "Assignment 1 part 1 and 2",
   "main": "server.js",
   "dependencies": {
-    "express": "4.13.4",
-    "express-handlebars": "3.0.0",
-    "mongodb": "2.1.14",
-    "mongoose": "4.4.11",
     "body-parser": "1.15.0",
-    "connect-mongo": "1.1.0",
+    "connect-mongo": "^1.1.0",
     "cookie-parser": "1.4.1",
-    "express-session": "1.13.0",
-    "dotenv": "2.0.0",
+    "dotenv": "^2.0.0",
+    "express": "^4.13.4",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.13.0",
     "method-override": "2.3.5",
-    "passport": "0.3.2",
-    "socket.io": "1.4.5",
-    "passport-twitter": "1.0.4"
+    "mongodb": "2.1.14",
+    "mongoose": "^4.4.11",
+    "passport": "^0.3.2",
+    "passport-twitter": "1.0.4",
+    "socket.io": "1.4.5"
   },
   "devDependencies": {},
   "scripts": {
-    "prestart": "mongod --dbpath dbpath --logpath log/mongod.log&",
+    "prestart": "start /b mongod --dbpath dbpath --logpath log/mongod.log",
     "start": "node server.js"
   },
   "repository": {
