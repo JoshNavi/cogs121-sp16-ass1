@@ -2,8 +2,11 @@ var mongoose = require('mongoose'),
 Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-	username: String,
-	password: String
+    "twitterID": String,
+    "token": String,
+    "username": String,
+    "displayName": String,
+    "photo": String
 });
 
 //SocketIO Schema
