@@ -6,12 +6,17 @@ const http = require("http").createServer(app);
 const path = require("path");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
+const handlebars = require('express-handlebars');
+const mongoose = require('mongoose');
 
 require("dotenv").load();
+
 var models = require("./models");
 var db = mongoose.connection;
 
-var router = { /* TODO */};
+var router = {
+  index: require("./routes/index")
+};
 
 var parser = {
     body: require("body-parser"),
