@@ -15,7 +15,8 @@ require("dotenv").load();
 var models = require("./models");
 
 var router = {
-  index: require("./routes/index")
+  index: require("./routes/index"),
+  chat: require("./routes/chat")
 };
 
 var parser = {
@@ -23,7 +24,9 @@ var parser = {
     cookie: require("cookie-parser")
 };
 
-var strategy = { /* TODO */ };
+var strategy = {
+  Twitter: require("passport-twitter")
+};
 
 // Database Connection
 var db = mongoose.connection;
@@ -59,31 +62,27 @@ app.use(passport.initialize());
 app.use(passport.session());
 /* TODO: Use Twitter Strategy for Passport here */
 passport.use(new strategy.Twitter({
-    consumerKey: process.env.TWITTER_CONSUMER_KEY,
-    consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-    callbackURL: "/auth/twitter/callback"
+  consumerKey: process.env.TWITTER_CONSUMER_KEY,
+  consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+  callbackURL: "/auth/twitter/callback"
 }, function(token, token_secret, profile, done) {
-    // What goes here? Refer to step 4.
-    models.User.findOne({ "twitterID": profile.id }, function(err, user) {
-    // (1) Check if there is an error. If so, return done(err);
+  models.User.findOne({ "twitterID": profile.id }, function(err, user) {
+    if(err) {
+      return done(err)
+    }
     if(!user) {
-        // (2) since the user is not found, create new user.
-        // Refer to Assignment 0 to how create a new instance of a model
-        var newUser = new models.User( {
-        	"twitterID": profile.id
-        });
-        return done(null, profile);
+      var newUser = new models.User({
+      	"twitterID": profile.id
+      });
+      return done(null, profile);
     } else {
-        // (3) since the user is found, update user’s information
-        process.nextTick(function() {
-            return done(null, profile);
-        });
+      process.nextTick(function() {
+        return done(null, profile);
+      });
     }
   });
-
-
-
 }));
+
 /* TODO: Passport serialization here */
 passport.serializeUser(function(user, done) {
     done(null, user);
@@ -91,6 +90,7 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(user, done) {
     done(null, user);
 });
+
 // Routes
 /* TODO: Routes for OAuth using Passport */
 app.get("/", router.index.view);
