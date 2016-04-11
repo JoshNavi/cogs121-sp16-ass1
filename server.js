@@ -121,7 +121,7 @@ io.on('connection', function(socket){
   });
 });
 
-socket.on()
+//socket.on()
 
 /*
 io.on('connection', function(socket){
