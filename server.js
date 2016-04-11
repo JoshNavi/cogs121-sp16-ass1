@@ -59,6 +59,9 @@ passport.use(new strategy.Twitter({
     if(!user) {
         // (2) since the user is not found, create new user.
         // Refer to Assignment 0 to how create a new instance of a model
+        var newUser = new models.User( {
+        	"twitterID": profile.id
+        });
         return done(null, profile);
     } else {
         // (3) since the user is found, update user’s information
