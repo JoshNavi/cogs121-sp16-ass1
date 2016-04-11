@@ -10,6 +10,7 @@ const handlebars = require('express-handlebars');
 const mongoose = require('mongoose');
 const passport = require('passport');
 
+
 require("dotenv").load();
 
 var models = require("./models");
@@ -23,7 +24,7 @@ var parser = {
     cookie: require("cookie-parser")
 };
 
-var strategy = { /* TODO */ };
+var strategy = {Twitter:require(passport.Twitter) };
 
 // Database Connection
 var db = mongoose.connection;
