@@ -6,12 +6,16 @@ const http = require("http").createServer(app);
 const path = require("path");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
+const handlebars = require('express-handlebars');
+const mongoose = require('mongoose');
 
 require("dotenv").load();
-var models = require("./models");
-var db = mongoose.connection;
 
-var router = { /* TODO */};
+var models = require("./models");
+
+var router = {
+  index: require("./routes/index")
+};
 
 var parser = {
     body: require("body-parser"),
@@ -21,7 +25,12 @@ var parser = {
 var strategy = { /* TODO */ };
 
 // Database Connection
-/* TODO */
+var db = mongoose.connection;
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://127.0.0.1/cogs121');
+db.on('error', console.error.bind(console, 'Mongo DB Connection Error:'));
+db.once('open', function(callback) {
+    console.log("Database connected successfully.");
+});
 
 // session middleware
 var session_middleware = session({
@@ -83,7 +92,7 @@ passport.deserializeUser(function(user, done) {
 });
 // Routes
 /* TODO: Routes for OAuth using Passport */
-// app.get("/", router.index.view);
+app.get("/", router.index.view);
 // More routes here if needed
 
 // io.use(function(socket, next) {
