@@ -4,6 +4,11 @@
   "description": "Assignment 1 part 1 and 2",
   "main": "server.js",
   "dependencies": {
+    "express": "4.13.4",
+    "express-handlebars": "3.0.0",
+    "mongodb": "2.1.14",
+    "mongoose": "4.4.11",
+    "body-parser": "1.15.0",
     "connect-mongo": "1.1.0",
     "cookie-parser": "1.4.1",
     "express-session": "1.13.0",
