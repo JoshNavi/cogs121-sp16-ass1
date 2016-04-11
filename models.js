@@ -6,6 +6,14 @@ var UserSchema = new Schema({
 	password: String
 });
 
+//SocketIO Schema
+var NewsFeedSchema = new Schema({
+	"user": String,
+	"message": String,
+	"posted": Date
+})
+
+exports.NewsFeed = mongoose.model('NewsFeed', NewsFeedSchema);
 
 
 

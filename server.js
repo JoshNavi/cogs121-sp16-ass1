@@ -9,6 +9,7 @@ const MongoStore = require("connect-mongo")(session);
 const handlebars = require('express-handlebars');
 const mongoose = require('mongoose');
 
+
 require("dotenv").load();
 
 var models = require("./models");
@@ -95,9 +96,37 @@ passport.deserializeUser(function(user, done) {
 app.get("/", router.index.view);
 // More routes here if needed
 
-// io.use(function(socket, next) {
-//     session_middleware(socket.request, {}, next);
-// });
+//Socket.io
+io.use(function(socket, next) {
+   session_middleware(socket.request, {}, next);
+});
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+});
+
+socket.on()
+
+/*
+io.on('connection', function(socket){
+  socket.on('newsfeed', function(msg){
+    console.log('message: ' + msg);
+  });
+});
+
+io.on('connection', function(socket){
+  socket.on('newsfeed', function(msg){
+    io.emit('newsfeed', msg);
+  });
+});
+*/
 
 /* TODO: Server-side Socket.io here */
 
