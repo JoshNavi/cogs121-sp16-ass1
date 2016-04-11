@@ -51,7 +51,7 @@ app.use(session_middleware);
 
 // Routes
 /* TODO: Routes for OAuth using Passport */
-// app.get("/", router.index.view);
+app.get("/", router.index.view);
 // More routes here if needed
 
 // io.use(function(socket, next) {
