@@ -8,6 +8,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const handlebars = require('express-handlebars');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 require("dotenv").load();
 
