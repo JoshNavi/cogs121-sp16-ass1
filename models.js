@@ -25,8 +25,8 @@ var DrinkSchema = new Schema({
 
 var CommentSchema = new Schema({
   "id": String,
-  "drinkID": { type: Schema.Types.ObjectID, ref: 'Drink' },
-  'userID': { type: Schema.Types.ObjectID, ref: 'User' },
+  "drinkID": { type: Schema.Types.ObjectId, ref: 'Drink' },
+  'userID': { type: Schema.Types.ObjectId, ref: 'User' },
   "text" : String
 });
 
