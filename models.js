@@ -16,22 +16,19 @@ var NewsFeedSchema = new Schema({
 	"posted": Date
 });
 
-var DrinkSchema = new Schema({
-  "id": String,
-  "name": String,
-  "type": String,
-  "description": String
+var CommentSchema = new Schema({
+  // 'userID': { type: Schema.Types.ObjectId, ref: 'User' },
+  "text" : String
 });
 
-var CommentSchema = new Schema({
-  "id": String,
-  "drinkID": { type: Schema.Types.ObjectId, ref: 'Drink' },
-  'userID': { type: Schema.Types.ObjectId, ref: 'User' },
-  "text" : String
+var DrinkSchema = new Schema({
+  "name": String,
+  "type": String,
+  "description": String,
+  "comments": [CommentSchema]
 });
 
 
 exports.NewsFeed = mongoose.model('NewsFeed', NewsFeedSchema);
 exports.User = mongoose.model('User', UserSchema);
 exports.Drink = mongoose.model('Drink', DrinkSchema);
-exports.Comment = mongoose.model('Comment', CommentSchema);

@@ -103,6 +103,10 @@ app.get("/logout", function(req, res) {
 	req.logout();
 	res.redirect('/');
 });
+
+app.post("/drinks", router.chat.postDrink);
+app.post("/comments", router.chat.postComment);
+
 // More routes here if needed
 
 //Socket.io
