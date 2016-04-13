@@ -31,7 +31,7 @@ exports.postComment = function(req, res) {
   var comment = new models.Comment({
       text: req.body.text,
   });
-
+  console.log(comment);
   var Drink = mongoose.model('Drink');
   Drink.findOne({name: req.body.name}, function(err, doc){
     if(!err) {
