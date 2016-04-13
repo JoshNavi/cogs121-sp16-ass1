@@ -28,14 +28,12 @@ exports.postDrink = function(req, res) {
 exports.postComment = function(req, res) {
   console.log(req.body);
 
-  var comment = new models.Comment({
-      text: req.body.text,
-  });
-  console.log(comment);
   var Drink = mongoose.model('Drink');
   Drink.findOne({name: req.body.name}, function(err, doc){
     if(!err) {
-      doc.comments.push( comment );
+      doc.comments.push({
+        text: req.body.text
+      });
       doc.save(function(err) {
         if(err) console.log(err);
         res.redirect('/chat');
