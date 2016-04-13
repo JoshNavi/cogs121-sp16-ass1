@@ -13,14 +13,15 @@ The system should speak the users' language, with words, phrases and concepts fa
 
 ###### User control and freedom:
 
-Website has bright red `Cancel` button after clicking `Add a drink` or `Comment on this Drink` which allows user to undo decision to post drink or comment.
+Website has bright red `Cancel` button after clicking `Add a drink` or `Comment on this Drink` which allows user to undo decision to post.
 
 ###### Consistency and standards:
 Users should not have to wonder whether different words, situations, or actions mean the same thing. Follow platform conventions.
 
 ###### Error prevention:
-Even better than good error messages is a careful design which prevents a problem from occurring in the first place. Either eliminate error-prone conditions or check for them and present users with a confirmation option before they commit to the action.
-(Read full article on preventing user errors.)
+
+Form to post a drink has dropdown menus for drink type which prevents users from typing in an invalid drink type which could cause errors.
+
 
 ###### Recognition rather than recall:
 
