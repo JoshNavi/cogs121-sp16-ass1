@@ -11,6 +11,8 @@
         </svg>
         <input class="filtered-search" placeholder="Search username or messages" autocomplete="off" />
     </div>-->
+    <!-- Vote JS -->
+    <script src="/js/vote.js"></script>
 </header>
 <section>
 
@@ -45,7 +47,20 @@
             {{#each data}}
             <hr>
             <li class = "drink">
+              <div class="caption-box">
+                <div class="right">
+                <div class="score unvoted" id="{{name}}">
+                    <span class="arrow up"><i class="glyphicon glyphicon-chevron-up"></i></span>
+                    <span class="score upvote">{{upvotes}}</span></br>
+                    <span class="arrow down"><i class="glyphicon glyphicon-chevron-down"></i></span>
+                    <span class="score downvote">{{downvotes}}</span>
+                </div>
+            </div>
+              </div>
                 <h3>{{this.name}}</h3>
+
+
+
                 <i>{{type}}</i><br><br>
                 <div class="description">{{{description}}}</div>
                 <div class="commentbutton" style="text-align:right"><button class="viewcomments link">View/Add Comments<span class="glyphicon glyphicon-comment" style="margin-left:5px"></span></button></div>

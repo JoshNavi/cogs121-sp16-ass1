@@ -236,3 +236,13 @@ button.link{
   background:none;
   border:none;
 }
+
+.right {
+  float: right;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.arrow .down {
+  display: inline;
+}

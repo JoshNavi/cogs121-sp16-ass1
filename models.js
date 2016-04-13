@@ -23,6 +23,8 @@ var CommentSchema = new Schema({
 
 var DrinkSchema = new Schema({
   "name": String,
+  "upvotes" : { type: Number, default: 0 },
+  "downvotes" : { type: Number, default: 0 },
   "type": String,
   "description": String,
   "comments": [CommentSchema]
@@ -33,3 +35,4 @@ exports.NewsFeed = mongoose.model('NewsFeed', NewsFeedSchema);
 exports.User = mongoose.model('User', UserSchema);
 exports.Drink = mongoose.model('Drink', DrinkSchema);
 exports.Comment = mongoose.model('Comment', DrinkSchema);
+// exports.Vote = mongoose.model('Vote', DrinkSchema);
