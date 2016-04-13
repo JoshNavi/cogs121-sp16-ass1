@@ -61,36 +61,85 @@ app.use(session_middleware);
 /* TODO: Passport Middleware Here*/
 app.use(passport.initialize());
 app.use(passport.session());
-/* TODO: Use Twitter Strategy for Passport here */
-passport.use(new strategy.Twitter({
-  consumerKey: process.env.TWITTER_CONSUMER_KEY,
-  consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-  callbackURL: "/auth/twitter/callback"
-}, function(token, token_secret, profile, done) {
-  models.User.findOne({ "twitterID": profile.id }, function(err, user) {
-    if(err) {
-      return done(err)
-    }
-    if(!user) {
-      var newUser = new models.User({
-      	"twitterID": profile.id
-      });
-      return done(null, profile);
-    } else {
-      process.nextTick(function() {
-        return done(null, profile);
-      });
-    }
-  });
-}));
 
-/* TODO: Passport serialization here */
+passport.use(new strategy.Twitter({
+        consumerKey: process.env.TWITTER_CONSUMER_KEY,
+        consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+        callbackURL: "/auth/twitter/callback"
+    },
+    function(token, tokenSecret, profile, done) {
+        console.log(profile.id);
+        models.User.findOne({
+          twitterID: profile.id
+        }, function(err, user) {
+            // (1) Check if there is an error. If so, return done(err);
+            if (err) {
+                return done(err);
+            }
+            if (!user) {
+                var newUser = new models.User({
+                    "twitterID": profile.id,
+                    "token": token,
+                    "username": profile.screen_name,
+                    "displayName": profile.displayName,
+                    "photo": profile.photos[0]
+                });
+                newUser.save();
+                return done(null, profile);
+            } else {
+                process.nextTick(function() {
+                    user.twitterID = profile.id;
+                    user.token = token;
+                    user.username = profile.username;
+                    user.displayName = profile.displayName;
+                    user.photo = profile.photos[0];
+                    user.save();
+                    return done(null, profile);
+                });
+            }
+        });
+    }
+));
+
 passport.serializeUser(function(user, done) {
-    done(null, user);
+  done(null, user);
 });
+
 passport.deserializeUser(function(user, done) {
-    done(null, user);
+  done(null, user);
 });
+
+
+// /* TODO: Use Twitter Strategy for Passport here */
+// passport.use(new strategy.Twitter({
+//   consumerKey: process.env.TWITTER_CONSUMER_KEY,
+//   consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+//   callbackURL: "/auth/twitter/callback"
+// }, function(token, token_secret, profile, done) {
+//   models.User.findOne({ "twitterID": profile.id }, function(err, user) {
+//     if(err) {
+//       return done(err)
+//     }
+//     if(!user) {
+//       var newUser = new models.User({
+//       	"twitterID": profile.id
+//       });
+//       return done(null, profile);
+//     } else {
+//       process.nextTick(function() {
+//         return done(null, profile);
+//       });
+//     }
+//   });
+// }));
+//
+// /* TODO: Passport serialization here */
+// passport.serializeUser(function(user, done) {
+//     done(null, user);
+// });
+// passport.deserializeUser(function(user, done) {
+//     done(null, user);
+// });
 
 // Routes
 /* TODO: Routes for OAuth using Passport */
