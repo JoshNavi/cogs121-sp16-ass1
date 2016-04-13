@@ -1,6 +1,6 @@
 # cogs121-sp16-ass1
 
-## Authors: Paris Do, Paul Kim, Jeremy Leu, Joshua Navi, Kye Zhu
+## Authors: Paris Do, Paul Kim, Jeremy Leu, Joshua Navi, Kyle Zhu
 
 ### Heuristic Implementations:
 
@@ -34,7 +34,8 @@ Accelerators -- unseen by the novice user -- may often speed up the interaction 
 Dialogues should not contain information which is irrelevant or rarely needed. Every extra unit of information in a dialogue competes with the relevant units of information and diminishes their relative visibility.
 
 ###### Help users recognize, diagnose, and recover from errors:
-Error messages should be expressed in plain language (no codes), precisely indicate the problem, and constructively suggest a solution.
+
+If a user tries to add a drink without entering a name for the drink, an error message telling the user that the name field is required appears.
 
 ###### Help and documentation:
 Even though it is better if the system can be used without documentation, it may be necessary to provide help and documentation. Any such information should be easy to search, focused on the user's task, list concrete steps to be carried out, and not be too large.
