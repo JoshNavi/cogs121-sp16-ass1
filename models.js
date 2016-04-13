@@ -32,3 +32,4 @@ var DrinkSchema = new Schema({
 exports.NewsFeed = mongoose.model('NewsFeed', NewsFeedSchema);
 exports.User = mongoose.model('User', UserSchema);
 exports.Drink = mongoose.model('Drink', DrinkSchema);
+exports.Comment = mongoose.model('Comment', DrinkSchema);

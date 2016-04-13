@@ -12,10 +12,12 @@
     </div>
 </header>
 <section>
+
     <div id="inner">
         <form id="send_message" action="">
             <input id="user_input" placeholder="Type a new message and hit enter!" autocomplete="off" />
         </form>
+        <br><button type="button" class="btn btn-secondary btn-lg btn-block" data-toggle="modal" data-target="#addDrink">Add a New Drink</button>
         <ul id="messages">
             {{#each newsfeed}}
             <hr>
@@ -36,8 +38,88 @@
             </li>
             {{/each}}
         </ul>
+        <ul id="drinks">
+            {{#each data}}
+            <hr>
+            <li class = "drink">
+                <h3>{{name}}</h3>
+                <i>{{type}}</i><br><br>
+                <div class="description">{{{description}}}</div>
+                <div class="commentbutton" style="text-align:right"><button class="viewcomments link">View/Add Comments<span class="glyphicon glyphicon-comment" style="margin-left:5px"></span></button></div>
+
+                <div class="commentscontainer" style="display:none">
+                  <ul class="comments">
+                    {{#each comments}}
+                    <li class="comment">
+                      {{this}}
+                    </li>
+                    {{/each}}
+                  </ul>
+                  <form action="/comments" method="post" class="form-inline addCommentForm"><br>
+                    <div class="form-group" style="width:100%">
+                      <div class="col-md-9" style="padding:0px 2px">
+                        <input type="text" class="form-control" name="text" style="width:100%" placeholder="Enter your comment...">
+                        <input type="hidden" name="name" class="drinkNameInput">
+                      </div>
+                      <div class="col-md-3" style="padding:0px 2px">
+                    	   <input type="submit" class="btn btn-secondary" value="Submit" style="width:100%">
+                      </div>
+                    </div>
+                  </form>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
     </div>
 </section>
+<!-- START ADD MODAL-->
+<div class="modal fade" id="addDrink" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h2 class="modal-title" id="exampleModalLabel">ADD DRINK</h2>
+            </div>
+            <div class="modal-body">
+                <form method="POST" name="modalForm" class="form-horizontal ws-validate" id="addDrinkForm" action="drinks">
+                    <div class="form-group">
+                        <label for="modalName" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input name="name" type="text" class="form-control" id="modalName" placeholder="some drink here TODO" required>
+                            <p class="help-block" id="invalidName">Please enter first and last name. Ex: First Last</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalType" class="col-sm-2 control-label">Type</label>
+                        <div class="col-sm-10">
+                          <select class="form-control" id="modalType" name="type">
+                            <option value="Starbucks">Starbucks</option>
+                            <option value="Alcohol">Alcohol</option>
+                            <option value="Other">Other</option>
+                          </select>
+                            <p class="help-block" id="invalidType">idk</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="modalDescription">Description</label>
+                        <div class="col-sm-10">
+                            <textarea name="description" rows="7" class="form-control" id="modalDescription" placeholder="stuff" required></textarea>
+                            <p class="help-block" id="invalidDescription">TODO</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-7">
+                            <button type="submit" class="btn btn-primary" id="okbutton">OK</button>
+                            <button class="btn btn-default" data-dismiss="modal" id="cancelbutton">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END ADD MODAL-->
 <footer>
     &copy; 2016. COGS 121 Spring 2016
 </footer>
@@ -45,3 +127,32 @@
 <script src="./js/socket.io.min.js"></script>
 <script src="./js/chatbox.js"></script>
 <script src="./js/search.js"></script>
+
+<script type = "text/javascript">
+  $(function(){
+    $('.viewcomments').click(function(){
+      if($(this).text() == "Hide Comments")
+      {
+        $(this).html("View/Add Comments<span class=\"glyphicon glyphicon-comment\" style=\"margin-left:5px\"></span>");
+        $(this).parent().next().css("display", "none");
+      }
+      else {
+        $(this).html("Hide Comments<span class=\"glyphicon glyphicon-comment\" style=\"margin-left:5px\"></span>");
+        $(this).parent().next().css("display", "block");
+      }
+
+    })
+    $('.addCommentForm').submit(function() {
+      console.log("sup " + $(this).parent().parent().find('h3').text());
+      $(this).find('.drinkNameInput').val($(this).parent().parent().find('h3').text());
+      return true;
+    });
+  });
+    /*$('#addDrinkForm').submit(function(){
+      $('#modalDescription').val($('#modalDescription').val().replace(/(?:\r\n|\r|\n)/g, '<br />'));
+      return true;
+    });
+    $('.drink').click(function(){
+      $(this).css("background-color", "#eeeeee");
+    })});*/
+</script>
