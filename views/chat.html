@@ -1,4 +1,5 @@
 <header>
+    <h2>drinkr</h2>
     <a class="logout" href="/logout">
         <div class="logout-button">
             Logout
@@ -87,18 +88,19 @@
             <div class="modal-body">
                 <form method="POST" name="modalForm" class="form-horizontal ws-validate" id="addDrinkForm" action="drinks">
                     <div class="form-group">
-                        <label for="modalName" class="col-sm-2 control-label">Name</label>
+                        <label for="modalName" class="col-sm-2 control-label">Drink Name</label>
                         <div class="col-sm-10">
-                            <input name="name" type="text" class="form-control" id="modalName" placeholder="some drink here TODO" required>
+                            <input name="name" type="text" class="form-control" id="modalName" placeholder="Please enter the name of your drink" required>
                             <p class="help-block" id="invalidName">Please enter first and last name. Ex: First Last</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="modalType" class="col-sm-2 control-label">Type</label>
+                        <label for="modalType" class="col-sm-2 control-label">Drink Type</label>
                         <div class="col-sm-10">
                           <select class="form-control" id="modalType" name="type">
-                            <option value="Starbucks">Starbucks</option>
                             <option value="Alcohol">Alcohol</option>
+                            <option value="Coffee">Coffee</option>
+                            <option value="Smoothie">Smoothie</option>
                             <option value="Other">Other</option>
                           </select>
                             <p class="help-block" id="invalidType">idk</p>
@@ -107,8 +109,8 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="modalDescription">Description</label>
                         <div class="col-sm-10">
-                            <textarea name="description" rows="7" class="form-control" id="modalDescription" placeholder="stuff" required></textarea>
-                            <p class="help-block" id="invalidDescription">TODO</p>
+                            <textarea name="description" rows="4" class="form-control" id="modalDescription" placeholder="Please enter a description of your drink" required></textarea>
+                            <p class="help-block" id="invalidDescription">Please fill in the description.</p>
                         </div>
                     </div>
                     <div class="form-group">
