@@ -2,11 +2,19 @@ var models = require("../models");
 var mongoose = require('mongoose');
 
 exports.view = function(req, res) {
-  models.Drink.find(function(err, data) {
-    //console.log(data);
-  	if (err) console.log(err);
-  	else res.render('chat', {data: data});
-  });
+  if(!req.user)
+  {
+    console.log("not logged in");
+    res.redirect('/');
+  }
+  else {
+    models.Drink.find(function(err, data) {
+      //console.log(data);
+    	if (err) console.log(err);
+    	else res.render('chat', {data: data});
+    });
+  }
+
 };
 
 exports.postDrink = function(req, res) {

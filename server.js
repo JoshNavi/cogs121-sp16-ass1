@@ -100,7 +100,9 @@ app.get("/chat", router.chat.view);
 app.get("/auth/twitter", passport.authenticate('twitter'));
 app.get("/auth/twitter/callback", passport.authenticate('twitter', { successRedirect: '/chat', failureRedirect: '/'}));
 app.get("/logout", function(req, res) {
+  console.log("before logout " + req.user);
 	req.logout();
+  console.log("after logout " + req.user);
 	res.redirect('/');
 });
 
