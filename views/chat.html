@@ -38,6 +38,7 @@
             </li>
             {{/each}}
         </ul>-->
+        <span id = "commentedDrinkBool" style="display:none">{{previousDrink}}</span>
         <span id = "commentedDrink" style="display:none">{{previous}}</span>
         <ul id="drinks">
             {{#each data}}
@@ -49,6 +50,7 @@
                 <div class="commentbutton" style="text-align:right"><button class="viewcomments link">View/Add Comments<span class="glyphicon glyphicon-comment" style="margin-left:5px"></span></button></div>
 
                 <div class="commentscontainer" style="display:none">
+                  <h4>Comments</h4>
                   <ul class="comments">
                     {{#each comments}}
                     <li class="comment">
@@ -144,6 +146,8 @@
 
     });
     var previousDrink = $('#commentedDrink').text();
+    if(previousDrink.length == 0)
+      previousDrink = "random string no one will ever call their drink8g78";
     console.log(previousDrink);
     $("h3:contains(\'"+ previousDrink +"\')").parent().find('.viewcomments').trigger("click");
     //$("h3[text = \'"+ previousDrink +"\']").parent().find('.commentbutton').trigger("click");
