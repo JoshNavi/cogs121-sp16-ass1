@@ -1,4 +1,5 @@
 <header>
+    <h2>drinkr</h2>
     <a class="logout" href="/logout">
         <div class="logout-button">
             Logout
@@ -10,6 +11,8 @@
         </svg>
         <input class="filtered-search" placeholder="Search username or messages" autocomplete="off" />
     </div>-->
+    <!-- Vote JS -->
+    <script src="/js/vote.js"></script>
 </header>
 <section>
 
@@ -44,7 +47,20 @@
             {{#each data}}
             <hr>
             <li class = "drink">
+              <div class="caption-box">
+                <div class="right">
+                <div class="score unvoted" id="{{name}}">
+                    <span class="arrow up"><i class="glyphicon glyphicon-chevron-up"></i></span>
+                    <span class="score upvote">{{upvotes}}</span></br>
+                    <span class="arrow down"><i class="glyphicon glyphicon-chevron-down"></i></span>
+                    <span class="score downvote">{{downvotes}}</span>
+                </div>
+            </div>
+              </div>
                 <h3>{{this.name}}</h3>
+
+
+
                 <i>{{type}}</i><br><br>
                 <div class="description">{{{description}}}</div>
                 <div class="commentbutton" style="text-align:right"><button class="viewcomments link">View/Add Comments<span class="glyphicon glyphicon-comment" style="margin-left:5px"></span></button></div>
@@ -87,18 +103,20 @@
             <div class="modal-body">
                 <form method="POST" name="modalForm" class="form-horizontal ws-validate" id="addDrinkForm" action="drinks">
                     <div class="form-group">
-                        <label for="modalName" class="col-sm-2 control-label">Name</label>
+                        <label for="modalName" class="col-sm-2 control-label">Drink Name</label>
                         <div class="col-sm-10">
-                            <input name="name" type="text" class="form-control" id="modalName" placeholder="some drink here TODO" required>
-                            <p class="help-block" id="invalidName">Please enter first and last name. Ex: First Last</p>
+                            <input name="name" type="text" class="form-control" id="modalName" placeholder="Please enter the name of your drink" required>
+                            <p class="help-block" id="invalidName">This field is required.</p>
+
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="modalType" class="col-sm-2 control-label">Type</label>
+                        <label for="modalType" class="col-sm-2 control-label">Drink Type</label>
                         <div class="col-sm-10">
                           <select class="form-control" id="modalType" name="type">
-                            <option value="Starbucks">Starbucks</option>
                             <option value="Alcohol">Alcohol</option>
+                            <option value="Coffee">Coffee</option>
+                            <option value="Smoothie">Smoothie</option>
                             <option value="Other">Other</option>
                           </select>
                             <p class="help-block" id="invalidType">idk</p>
@@ -107,13 +125,13 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="modalDescription">Description</label>
                         <div class="col-sm-10">
-                            <textarea name="description" rows="7" class="form-control" id="modalDescription" placeholder="stuff" required></textarea>
-                            <p class="help-block" id="invalidDescription">TODO</p>
+                            <textarea name="description" rows="4" class="form-control" id="modalDescription" placeholder="Please enter a description of your drink" required></textarea>
+                            <p class="help-block" id="invalidDescription">Please fill in the description.</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-7">
-                            <button type="submit" class="btn btn-primary" id="okbutton">OK</button>
+                            <button type="submit" class="btn btn-primary" id="okbutton" disabled>OK</button>
                             <button class="btn btn-default" data-dismiss="modal" id="cancelbutton">Cancel</button>
                         </div>
                     </div>
@@ -133,6 +151,13 @@
 
 <script type = "text/javascript">
   $(function(){
+    jQuery.fn.extend({
+      disable: function(state) {
+        return this.each(function() {
+          this.disabled = state;
+        });
+      }
+    });
     $('.viewcomments').click(function(){
       if($(this).text() == "Hide Comments")
       {
@@ -145,6 +170,17 @@
       }
 
     });
+    $('#modalName').focusout(function(){
+      if(!$('#modalName').val())
+      {
+        $('#okbutton').disable(true);
+        $('#invalidName').css("display", "block");
+      }
+    });
+    $('#modalName').on('input', function(e){
+      $('#okbutton').disable(false);
+      $('#invalidName').css("display", "none");
+    });
     var previousDrink = $('#commentedDrink').text();
     if(previousDrink.length == 0)
       previousDrink = "random string no one will ever call their drink8g78";
@@ -152,10 +188,10 @@
     $("h3:contains(\'"+ previousDrink +"\')").parent().find('.viewcomments').trigger("click");
     //$("h3[text = \'"+ previousDrink +"\']").parent().find('.commentbutton').trigger("click");
     //console.log("new things" + $("h3[text = \'"+ previousDrink +"\']").text());
-    console.log("new things " + $("h3:contains(\'"+ previousDrink +"\')").parent().find('.viewcomments').text());
+    //console.log("new things " + $("h3:contains(\'"+ previousDrink +"\')").parent().find('.viewcomments').text());
 
     $('.addCommentForm').submit(function() {
-      console.log("sup " + $(this).parent().parent().find('h3').text());
+      //console.log("sup " + $(this).parent().parent().find('h3').text());
       $(this).find('.drinkNameInput').val($(this).parent().parent().find('h3').text());
       return true;
     });
