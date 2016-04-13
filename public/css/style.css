@@ -246,3 +246,7 @@ button.link{
 .arrow .down {
   display: inline;
 }
+
+h2 {
+  padding-left:2%;
+}
