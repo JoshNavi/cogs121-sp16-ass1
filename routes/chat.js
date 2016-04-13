@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 
 exports.view = function(req, res) {
   models.Drink.find(function(err, data) {
-    console.log(data);
+    //console.log(data);
   	if (err) console.log(err);
   	else res.render('chat', {data: data});
   });
@@ -26,7 +26,7 @@ exports.postDrink = function(req, res) {
 };
 
 exports.postComment = function(req, res) {
-  console.log(req.body);
+  //console.log(req.body);
 
   var Drink = mongoose.model('Drink');
   Drink.findOne({name: req.body.name}, function(err, doc){
@@ -36,7 +36,11 @@ exports.postComment = function(req, res) {
       });
       doc.save(function(err) {
         if(err) console.log(err);
-        res.redirect('/chat');
+        models.Drink.find(function(err, data) {
+          console.log("previous page: " + req.body.name);
+        	if (err) console.log(err);
+        	else res.render('chat', {data: data, previous: req.body.name});
+        });
       });
     }
   });

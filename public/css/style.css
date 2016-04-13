@@ -228,7 +228,7 @@ footer {
   display:none;
 }
 
-#drinks, #comments{
+#drinks, .comments{
   list-style-type:none;
 }
 

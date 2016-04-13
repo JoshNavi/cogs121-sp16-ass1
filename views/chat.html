@@ -4,21 +4,21 @@
             Logout
         </div>
     </a>
-    <div class="search">
+    <!--<div class="search">
         <svg class="search-icon" style="width:24px;height:24px" viewBox="0 0 24 24">
             <path fill="#4fa6de" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
         </svg>
         <input class="filtered-search" placeholder="Search username or messages" autocomplete="off" />
-    </div>
+    </div>-->
 </header>
 <section>
 
     <div id="inner">
-        <form id="send_message" action="">
+        <!--<form id="send_message" action="">
             <input id="user_input" placeholder="Type a new message and hit enter!" autocomplete="off" />
-        </form>
+        </form>-->
         <br><button type="button" class="btn btn-secondary btn-lg btn-block" data-toggle="modal" data-target="#addDrink">Add a New Drink</button>
-        <ul id="messages">
+        <!--<ul id="messages">
             {{#each newsfeed}}
             <hr>
             <li>
@@ -37,12 +37,13 @@
                 </div>
             </li>
             {{/each}}
-        </ul>
+        </ul>-->
+        <span id = "commentedDrink" style="display:none">{{previous}}</span>
         <ul id="drinks">
             {{#each data}}
             <hr>
             <li class = "drink">
-                <h3>{{name}}</h3>
+                <h3>{{this.name}}</h3>
                 <i>{{type}}</i><br><br>
                 <div class="description">{{{description}}}</div>
                 <div class="commentbutton" style="text-align:right"><button class="viewcomments link">View/Add Comments<span class="glyphicon glyphicon-comment" style="margin-left:5px"></span></button></div>
@@ -141,7 +142,14 @@
         $(this).parent().next().css("display", "block");
       }
 
-    })
+    });
+    var previousDrink = $('#commentedDrink').text();
+    console.log(previousDrink);
+    $("h3:contains(\'"+ previousDrink +"\')").parent().find('.viewcomments').trigger("click");
+    //$("h3[text = \'"+ previousDrink +"\']").parent().find('.commentbutton').trigger("click");
+    //console.log("new things" + $("h3[text = \'"+ previousDrink +"\']").text());
+    console.log("new things " + $("h3:contains(\'"+ previousDrink +"\')").parent().find('.viewcomments').text());
+
     $('.addCommentForm').submit(function() {
       console.log("sup " + $(this).parent().parent().find('h3').text());
       $(this).find('.drinkNameInput').val($(this).parent().parent().find('h3').text());
