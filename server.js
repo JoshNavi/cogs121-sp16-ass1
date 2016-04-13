@@ -106,6 +106,7 @@ app.get("/logout", function(req, res) {
 
 app.post("/drinks", router.chat.postDrink);
 app.post("/comments", router.chat.postComment);
+app.post("/votes", router.chat.postVotes);
 
 // More routes here if needed
 
