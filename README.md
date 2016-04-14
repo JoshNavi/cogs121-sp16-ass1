@@ -58,5 +58,5 @@ Our application is simple enough where it doesn't really need a tutorial, or hel
 #Joshua Navi:
 
 
-#Kyle Zhu:
+#Kyle Zhu: Applied heuristics by adjusting the type of wording we used, as well as emphasizing certain buttons on the page so that they look clickable. Also, wrote the help & documentation, and modified the 'Add a New Drink' form so that it speaks in user friendly language, as well as having useful descriptions for empty fields. Drew a prototype with a baseline skeleton design as well as emphasizing the submit drink and cancel button colors, along with their phrasing. Helped implement OAuth for login with Twitter, as well as dropdown menu on Drink Types.
 
