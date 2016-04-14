@@ -26,7 +26,7 @@ var parser = {
 };
 
 var strategy = {
-  Twitter: require("passport-twitter")
+  Twitter: require("passport-twitter").Strategy
 };
 
 // Database Connection
