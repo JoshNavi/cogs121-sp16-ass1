@@ -37,7 +37,8 @@
             <input id="user_input" placeholder="Type a new message and hit enter!" autocomplete="off" />
         </form>-->
         <!--<br><button type="button" class="btn btn-secondary btn-lg btn-block" data-toggle="modal" data-target="#addDrink">Add a New Drink</button>-->
-        <center><h2>Explore Drinks</h2></center>
+
+        <h2>EXPLORE DRINKS<img src="../img/drink.png" id="drinkimg"></h2>
         <!--<ul id="messages">
             {{#each newsfeed}}
             <hr>
@@ -203,6 +204,7 @@
         });
       }
     });
+    $('#drinkimg').height($('h2').height());
     $('.viewcomments').click(function(){
       if($(this).text() == "Hide Comments")
       {
