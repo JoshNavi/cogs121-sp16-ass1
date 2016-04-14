@@ -29,6 +29,9 @@
     </div>-->
     <!-- Vote JS -->
     <script src="/js/vote.js"></script>
+    <!-- Category JS
+    <script src="/js/categories.js"></script>
+    -->
 </header>
 <section>
 
@@ -39,6 +42,24 @@
         <!--<br><button type="button" class="btn btn-secondary btn-lg btn-block" data-toggle="modal" data-target="#addDrink">Add a New Drink</button>-->
 
         <u><h2>Explore Drinks</u><img src="../img/drink.png" id="drinkimg"></h2>
+
+        <div class="dropdown">
+        <div class="btn-group">
+        <button type="button" class="btn btn-secondary">Drink Type</button>
+        <button type="button" data-toggle="dropdown" id="drinktype" aria-haspopup="true" aria-expanded="false" class="btn btn-secondary dropdown-toggle">
+          <span class="caret"></span>
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+
+        <ul class="dropdown-menu drinktypes" aria-labelledby="drinktype">
+          <li><a href="#">All</a></li>
+          <li><a href="#">Alcohol</a></li>
+          <li><a href="#">Coffee</a></li>
+          <li><a href="#">Smoothie</a></li>
+          <li><a href="#">Other</a></li>
+        </ul>
+        </div>
+        </div>
         <!--<ul id="messages">
             {{#each newsfeed}}
             <hr>
@@ -61,10 +82,10 @@
         </ul>-->
         <span id = "commentedDrinkBool" style="display:none">{{previousDrink}}</span>
         <span id = "commentedDrink" style="display:none">{{previous}}</span>
-        <ul id="drinks">
+        <ul id="drinks" class="items">
             {{#each data}}
             <hr>
-            <li class = "drink">
+            <li class = "drink {{type}}">
               <div class="caption-box">
                 <div class="right">
                 <div class="score unvoted" id="{{name}}">
@@ -73,13 +94,13 @@
                     <span class="arrow down"><i class="glyphicon glyphicon-chevron-down"></i></span>
                     <span class="score downvote">{{downvotes}}</span>
                 </div>
-            </div>
+                </div>
               </div>
                 <h3>{{this.name}}</h3>
 
 
 
-                Drink Type:<i><b> {{type}}</i></b><br><br>
+                <span class="glyphicon glyphicon-glass"></span><i><b> {{type}}</i></b></p><br><br>
                 <div class="description">{{{description}}}</div>
 
 
@@ -241,6 +262,46 @@
       //console.log("sup " + $(this).parent().parent().find('h3').text());
       $(this).find('.drinkNameInput').val($(this).parent().parent().find('h3').text());
       return true;
+    });
+
+    // sort by category
+    $('ul.drinktypes li a').click(function(e) {
+    var category = $(this).text().toLowerCase();
+    if(category == "all")
+    {
+      console.log("if statement reached");
+      $('ul.items li').show();
+    }
+
+    else 
+    {
+      
+      $('ul.items li').hide();
+
+      /*
+      $.each(category, function(i, v) {
+        $('ul.items li.' + v.trim()).show();
+      });
+      */
+      
+      if(category == "alcohol")
+      {
+        $('ul.items li.Alcohol').show();   
+      } 
+      else if(category == "coffee")
+      {
+        $('ul.items li.Coffee').show(); 
+      } 
+      else if(category == "smoothie")
+      {
+        $('ul.items li.Smoothie').show(); 
+      } 
+      else
+      {
+        $('ul.items li.Other').show(); 
+      }   
+      
+    }
     });
   });
     /*$('#addDrinkForm').submit(function(){
