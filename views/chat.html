@@ -1,6 +1,6 @@
 <header>
-    <h2>drinkr</h2>
-    <a class="logout" href="/logout">
+    <center><h2 >drinkr</h2></center>
+    <a class="logout center-block" href="/logout">
         <div class="logout-button">
             Logout
         </div>
@@ -61,9 +61,11 @@
 
 
 
-                <i>{{type}}</i><br><br>
+                Drink Type:<i><b> {{type}}</i></b><br><br>
                 <div class="description">{{{description}}}</div>
-                <div class="commentbutton" style="text-align:right"><button class="viewcomments link">View/Add Comments<span class="glyphicon glyphicon-comment" style="margin-left:5px"></span></button></div>
+                
+          
+                    <div class="commentbutton" style="text-align:right"><button class="viewcomments link" style="border: 1px solid #AAAAAA; padding: 5px 5px 5px 5px;border-radius: 8px">View/Add Comments<span class="glyphicon glyphicon-comment" style="margin-left:5px"></span></button></div>
 
                 <div class="commentscontainer" style="display:none">
                   <h4>Comments</h4>
@@ -98,7 +100,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
-                <h2 class="modal-title" id="exampleModalLabel">ADD DRINK</h2>
+                <h2 class="modal-title" id="exampleModalLabel">Please tell us about your drink</h2>
             </div>
             <div class="modal-body">
                 <form method="POST" name="modalForm" class="form-horizontal ws-validate" id="addDrinkForm" action="drinks">
@@ -130,9 +132,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-offset-3 col-sm-7">
-                            <button type="submit" class="btn btn-primary" id="okbutton" disabled>OK</button>
-                            <button class="btn btn-default" data-dismiss="modal" id="cancelbutton">Cancel</button>
+                        <div class="col-sm-offset-2 col-sm-7">
+                            
+                            <button type="submit" class="btn btn-primary" id="okbutton" disabled style="padding-left: 30px; padding-right: 30px">Submit</button>
+
+                            <button class="btn btn-warning" data-dismiss="modal" id="cancelbutton">Cancel</button>
+                            
                         </div>
                     </div>
                 </form>
