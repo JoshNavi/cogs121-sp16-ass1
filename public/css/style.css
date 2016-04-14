@@ -246,3 +246,28 @@ button.link{
 .arrow .down {
   display: inline;
 }
+
+.upvoted .glyphicon-chevron-up{
+  color: green;
+}
+
+.upvoted .score.upvote {
+  color: green;
+}
+
+.upvoted .glyphicon-arrow-up {
+  color: green;
+}
+
+.downvoted .glyphicon-chevron-down{
+  color: red;
+}
+
+.downvoted .glyphicon-arrow-down{
+  color: red;
+}
+
+.downvoted .score.downvote {
+  color: red;
+  opacity: 0.5;
+}
