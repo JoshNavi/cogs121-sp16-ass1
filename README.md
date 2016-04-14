@@ -50,6 +50,8 @@ Our application is simple enough where it doesn't really need a tutorial, or hel
 
 
 ###### Paul Kim:
+Created wireframes and design concepts for desktop and mobile. Changed some titles to use icons instead for easier identification and association. Changed the location of few buttons. Created a category button so that drinks can be displayed by category.
+
 
 
 ###### Jeremy Leu:
