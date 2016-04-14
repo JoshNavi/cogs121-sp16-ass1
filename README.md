@@ -53,7 +53,7 @@ Our application is simple enough where it doesn't really need a tutorial, or hel
 
 
 ###### Jeremy Leu:
-
+Implemented the frontend forms and UI for adding a drink and commenting, helped with authentication, designed the drink images used on both the login screen and /chat.html, and did some UI design to better match heuristics.
 
 ###### Joshua Navi:
 Designed and implemented the MongoDB schemas (models.js) as well as added the functions for handling post requests for both comments and drinks and get requests for drinks (chat.js).
