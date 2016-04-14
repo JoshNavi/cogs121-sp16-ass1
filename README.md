@@ -38,4 +38,25 @@ Our website is modelled off of how Apple designs their products -- sleek and sim
 If a user tries to add a drink without entering a name for the drink, an error message telling the user that the name field is required appears. Also, we made it so that a user can not continually click the upvote or downvote button. As such, they have a maximum of +1 or -1 per post. 
 
 ###### Help and documentation:
-Our application is simple enough where it doesn't really need a tutorial, or help documentation. All the things that might need help and documentation have forms or text instructing you on what to do. That being said, we included the help button on our /chat page, with a little pop up with instructions for the user.
+Our application is simple enough where it doesn't really need a tutorial, or help documentation. That being said, we included the help button on our /chat page, with a little pop up with instructions for the user. It goes over each of the functionalities briefly so the user understands how to use drinkr.
+
+
+
+
+
+############ Documentation of each group member's contributions:
+
+#Paris Do:
+
+
+#Paul Kim:
+
+
+#Jeremy Leu:
+
+
+#Joshua Navi:
+
+
+#Kyle Zhu:
+
