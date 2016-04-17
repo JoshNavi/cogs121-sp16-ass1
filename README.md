@@ -47,7 +47,7 @@ Our application is simple enough where it doesn't really need a tutorial, or hel
 ### Documentation of each group member's contributions:
 
 ###### Paris Do:
-
+Implemented upvote and downvote buttons -- persistent vote count after page is refreshed, vote icons change color when clicked, users can only upvote/downvote once (vote.js).  
 
 ###### Paul Kim:
 Created wireframes and design concepts for desktop and mobile. Changed some titles to use icons instead for easier identification and association. Changed the location of few buttons. Created a category button so that drinks can be displayed by category.
